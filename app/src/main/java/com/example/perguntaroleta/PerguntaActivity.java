@@ -13,8 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.Random;
 
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +31,9 @@ public class PerguntaActivity extends AppCompatActivity {
     TextView txtPergunta;
     Pergunta pergunta;
     ApiService apiService;
+
+    String listener = "0";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +56,7 @@ public class PerguntaActivity extends AppCompatActivity {
         sortearPergunta.setOnClickListener(view -> {
             try{
                 Log.i("Tag",String.valueOf(random));
-                consumirAPI(apiService);
+                getListener();
                 setButtonsCollors();
             }
             catch(Exception e){
@@ -75,17 +80,17 @@ public class PerguntaActivity extends AppCompatActivity {
             finish();
         });
 
-        consumirAPI(apiService);
+       // getPerguntasApi(3);
 
     }
 
-    public void consumirAPI(ApiService apiService){
+    private void getPerguntasApi(int number){
         try {
-            Random gerador = new Random();
-            random = gerador.nextInt(14);
-            random = random+1;
+//            Random gerador = new Random();
+//            random = gerador.nextInt(14);
+//            random = random+1;
 
-            Call<Pergunta> call = apiService.getQuestion(random); // Caso queira mudar o cep, mude o argumento("01001000")
+            Call<Pergunta> call = apiService.getQuestion(number); // Caso queira mudar o cep, mude o argumento("01001000")
             call.enqueue(new Callback<Pergunta>() {
                 @SuppressLint("SetTextI18n")
                 @Override
@@ -102,9 +107,7 @@ public class PerguntaActivity extends AppCompatActivity {
                         alternativaB.setText("Avance");
                         alternativaC.setText("Avance");
                     }
-
                 }
-
                 @Override
                 public void onFailure(Call<Pergunta> call, Throwable t) { 	// Caso aconteça algum erro de api(404,500, etc), entra nessa função
                     txtPergunta.setText(t.toString());
@@ -115,6 +118,31 @@ public class PerguntaActivity extends AppCompatActivity {
             e.printStackTrace();
             txtPergunta.setText(e.toString());
         }
+    }
+
+
+    private void getListener(){
+        Call<String> call = apiService.getListener();
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String resposta = response.body().toString();
+
+                if(listener != resposta){
+                    listener = resposta;
+
+
+                    //getPerguntasApi(Integer.parseInt(listener));
+                }
+                txtPergunta.setText(listener);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                txtPergunta.setText(call.toString());
+            }
+        });
     }
 
     @SuppressLint("ResourceAsColor")
@@ -153,7 +181,6 @@ public class PerguntaActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                consumirAPI(apiService);
                 setButtonsCollors();
                 alternativaA.setClickable(true);
                 alternativaB.setClickable(true);
