@@ -117,17 +117,21 @@ public class PerguntaActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     public void verificarAlternativaCorreta(Button btn, String resposta){
         if(pergunta.getA()!= ""){
+            btn.setTextColor(getResources().getColor(R.color.white));
             if(pergunta.getCerta().equals(resposta)){
                 btn.setBackgroundColor(getResources().getColor(R.color.blue));
                 alternativaA.setClickable(false);
                 alternativaB.setClickable(false);
                 alternativaC.setClickable(false);
+
                 awaitSeconds(1500);
                 return;
             }
             btn.setBackgroundColor(getResources().getColor(R.color.red));
+
             alternativaA.setClickable(false);
             alternativaB.setClickable(false);
             alternativaC.setClickable(false);
@@ -135,11 +139,15 @@ public class PerguntaActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     public void setButtonsCollors(){
         alternativaA.setBackgroundColor(getResources().getColor(R.color.button_color));
+        alternativaA.setTextColor(getResources().getColor(R.color.text_color));
         alternativaB.setBackgroundColor(getResources().getColor(R.color.button_color));
+        alternativaB.setTextColor(getResources().getColor(R.color.text_color));
         alternativaC.setBackgroundColor(getResources().getColor(R.color.button_color));
-    }
+        alternativaC.setTextColor(getResources().getColor(R.color.text_color));
+        }
 
     public void awaitSeconds(int milliseconds){
         new Handler().postDelayed(new Runnable() {

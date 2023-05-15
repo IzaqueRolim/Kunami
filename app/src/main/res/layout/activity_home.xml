@@ -15,7 +15,7 @@
         android:layout_weight="3"
         android:layout_width="350dp"
         android:layout_height="290dp"
-        app:srcCompat="@mipmap/logo_home_foreground"
+        app:srcCompat="@drawable/logo_kunami2"
 
         />
     <ImageView
