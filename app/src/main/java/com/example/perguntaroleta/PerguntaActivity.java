@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import okhttp3.Request;
 import retrofit2.Call;
@@ -32,6 +34,7 @@ public class PerguntaActivity extends AppCompatActivity {
     Pergunta pergunta;
     ApiService apiService;
 
+    private Timer timer;
     String listener = "0";
 
     @Override
@@ -80,7 +83,18 @@ public class PerguntaActivity extends AppCompatActivity {
             finish();
         });
 
-       // getPerguntasApi(3);
+     Handler handler = new Handler();
+
+     Runnable runnable = new Runnable() {
+         @Override
+         public void run() {
+             getListener();
+             handler.postDelayed(this,2000);
+         }
+     };
+
+     handler.postDelayed(runnable, 1000);
+
 
     }
 
@@ -127,15 +141,13 @@ public class PerguntaActivity extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                String resposta = response.body().toString();
+                String resposta = response.body();
 
-                if(listener != resposta){
+                if(resposta!= null && !listener.equals(resposta)) {
                     listener = resposta;
 
-
-                    //getPerguntasApi(Integer.parseInt(listener));
+                    getPerguntasApi(Integer.parseInt(listener));
                 }
-                txtPergunta.setText(listener);
             }
 
             @Override
@@ -155,7 +167,7 @@ public class PerguntaActivity extends AppCompatActivity {
                 alternativaB.setClickable(false);
                 alternativaC.setClickable(false);
 
-                awaitSeconds(1500);
+
                 return;
             }
             btn.setBackgroundColor(getResources().getColor(R.color.red));
@@ -163,7 +175,7 @@ public class PerguntaActivity extends AppCompatActivity {
             alternativaA.setClickable(false);
             alternativaB.setClickable(false);
             alternativaC.setClickable(false);
-            awaitSeconds(1500);
+
         }
     }
 
@@ -188,4 +200,6 @@ public class PerguntaActivity extends AppCompatActivity {
             }
         }, milliseconds);
     }
+
+
 }
