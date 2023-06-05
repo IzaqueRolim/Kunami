@@ -94,6 +94,7 @@ public class PerguntaActivity extends AppCompatActivity {
             modalBonus.setVisibility(View.GONE);
         });
 
+
         Handler handler = new Handler();
 
         Runnable runnable = new Runnable() {
@@ -111,7 +112,18 @@ public class PerguntaActivity extends AppCompatActivity {
         Log.i(" Valor",String.valueOf(valor));
         personagem.setImageResource(valor);
 
-       
+     Handler handler = new Handler();
+
+     Runnable runnable = new Runnable() {
+         @Override
+         public void run() {
+             getListener();
+             handler.postDelayed(this,2000);
+         }
+     };
+
+     handler.postDelayed(runnable, 1000);
+
 
     }
 
