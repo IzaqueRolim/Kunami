@@ -112,17 +112,7 @@ public class PerguntaActivity extends AppCompatActivity {
         Log.i(" Valor",String.valueOf(valor));
         personagem.setImageResource(valor);
 
-     Handler handler = new Handler();
 
-     Runnable runnable = new Runnable() {
-         @Override
-         public void run() {
-             getListener();
-             handler.postDelayed(this,2000);
-         }
-     };
-
-     handler.postDelayed(runnable, 1000);
 
 
     }
@@ -176,6 +166,7 @@ public class PerguntaActivity extends AppCompatActivity {
                 if(resposta!= null && !listener.equals(resposta)) {
                     listener = resposta;
                     modalBonus.setVisibility(View.GONE);
+                    gif.setVisibility(View.GONE);
                     getPerguntasApi(Integer.parseInt(listener));
                 }
             }
@@ -196,8 +187,8 @@ public class PerguntaActivity extends AppCompatActivity {
                 alternativaA.setClickable(false);
                 alternativaB.setClickable(false);
                 alternativaC.setClickable(false);
-
-
+                awaitSeconds(2000);
+                gif.setVisibility(View.VISIBLE);
                 return;
             }
             btn.setBackgroundColor(getResources().getColor(R.color.red));
