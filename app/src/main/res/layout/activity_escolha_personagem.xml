@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".EscolhaPersonagemActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escolha seu personagem"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        />
+
+    <GridLayout
+        android:id="@+id/imageGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="3"
+        android:columnOrderPreserved="false"
+
+        >
+        <ImageView
+            android:id="@+id/imgMula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mulac_p"
+            android:layout_gravity="center"
+
+            />
+
+        <ImageView
+            android:id="@+id/imgBoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/boto_p2"
+            android:layout_gravity="center"
+            />
+        <ImageView
+            android:id="@+id/imgIara"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iara_p"
+
+            />
+        <ImageView
+            android:id="@+id/imgBoi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/boi_p"
+            />
+        <ImageView
+            android:id="@+id/imgSaci"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sacii_p"
+            />
+        <ImageView
+            android:id="@+id/imgCurupira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/curupira_p"
+            />
+    </GridLayout>
+
+    <Button
+        android:id="@+id/btnEscolhaPersonagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:textColor="@color/white"
+        android:text="Escolher" />
+
+
+</LinearLayout>

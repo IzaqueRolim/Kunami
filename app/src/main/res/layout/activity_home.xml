@@ -23,7 +23,7 @@
         android:layout_weight="1"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/baseline_play_circle_24"
+        android:src="@drawable/btn_play"
         />
 
 </LinearLayout>

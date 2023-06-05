@@ -16,7 +16,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         btnStart = findViewById(R.id.btnStart);
         btnStart.setOnClickListener(view ->{
-            Intent intent = new Intent(getApplicationContext(), PerguntaActivity.class);
+            Intent intent = new Intent(getApplicationContext(), EscolhaPersonagemActivity.class);
             startActivity(intent);
             finish();
         });
