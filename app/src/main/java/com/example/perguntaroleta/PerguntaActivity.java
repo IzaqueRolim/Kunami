@@ -31,10 +31,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PerguntaActivity extends AppCompatActivity {
 
     int random;
-    Button alternativaA,alternativaB,alternativaC,btnFecharModal;
-    FrameLayout modalBonus;
+    Button alternativaA,alternativaB,alternativaC;
+    FrameLayout modalBonus,modalGif;
     ImageView sortearPergunta,btnBack,personagem, gif;
-    TextView txtPergunta;
+    TextView txtPergunta,txtModalBonus;
     Pergunta pergunta;
     ApiService apiService;
 
@@ -53,9 +53,9 @@ public class PerguntaActivity extends AppCompatActivity {
         alternativaC = findViewById(R.id.alternativaC);
         btnBack = findViewById(R.id.btnBack);
         modalBonus = findViewById(R.id.modalBonus);
-        btnFecharModal = findViewById(R.id.btnFecharModal);
         personagem = findViewById(R.id.Logo);
-        gif = findViewById(R.id.gif);
+        modalGif = findViewById(R.id.modalGif);
+        txtModalBonus = findViewById(R.id.txtModalBonus);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://projeto-k-46f87-default-rtdb.firebaseio.com/Roleta/") // A url
@@ -90,9 +90,6 @@ public class PerguntaActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        btnFecharModal.setOnClickListener(v->{
-            modalBonus.setVisibility(View.GONE);
-        });
 
 
         Handler handler = new Handler();
@@ -111,9 +108,6 @@ public class PerguntaActivity extends AppCompatActivity {
         int valor = intent.getIntExtra("personagem",0);
         Log.i(" Valor",String.valueOf(valor));
         personagem.setImageResource(valor);
-
-
-
 
     }
 
@@ -137,6 +131,7 @@ public class PerguntaActivity extends AppCompatActivity {
                     }
                     else{
                         modalBonus.setVisibility(View.VISIBLE);
+                        txtModalBonus.setText(pergunta.getQ());
                         alternativaA.setText("Avance");
                         alternativaB.setText("Avance");
                         alternativaC.setText("Avance");
@@ -166,7 +161,7 @@ public class PerguntaActivity extends AppCompatActivity {
                 if(resposta!= null && !listener.equals(resposta)) {
                     listener = resposta;
                     modalBonus.setVisibility(View.GONE);
-                    gif.setVisibility(View.GONE);
+                    modalGif.setVisibility(View.GONE);
                     getPerguntasApi(Integer.parseInt(listener));
                 }
             }
@@ -188,7 +183,6 @@ public class PerguntaActivity extends AppCompatActivity {
                 alternativaB.setClickable(false);
                 alternativaC.setClickable(false);
                 awaitSeconds(2000);
-                gif.setVisibility(View.VISIBLE);
                 return;
             }
             btn.setBackgroundColor(getResources().getColor(R.color.red));
@@ -196,6 +190,7 @@ public class PerguntaActivity extends AppCompatActivity {
             alternativaA.setClickable(false);
             alternativaB.setClickable(false);
             alternativaC.setClickable(false);
+            awaitSeconds(2000);
 
         }
     }
@@ -218,6 +213,8 @@ public class PerguntaActivity extends AppCompatActivity {
                 alternativaA.setClickable(true);
                 alternativaB.setClickable(true);
                 alternativaC.setClickable(true);
+                modalGif.setVisibility(View.VISIBLE);
+
             }
         }, milliseconds);
     }

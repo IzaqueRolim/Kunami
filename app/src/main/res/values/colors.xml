@@ -4,13 +4,13 @@
     <color name="background_home">#D7E6AC</color>
     <color name="button_color">#66B75B</color>
     <color name="text_color">#195938</color>
-    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_200">#1D584E</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple_500">#195938</color>
     <color name="purple_700">#195938</color>
     <color name="purple_200">#195938</color>
-    <color name="red">#FF0000</color>
-    <color name="blue">#0E5107</color>
+    <color name="red">#C22A2A</color>
+    <color name="blue">#3CB9B9</color>
 </resources>
