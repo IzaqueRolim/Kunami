@@ -17,11 +17,11 @@
         <activity
             android:name=".EscolhaPersonagemActivity"
             android:exported="false"
-            android:screenOrientation="landscape"/>
+           />
         <activity
             android:name=".HomeActivity"
             android:exported="true"
-            android:screenOrientation="landscape">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,11 @@
         <activity
             android:name=".PerguntaActivity"
             android:exported="false"
-            android:screenOrientation="landscape"></activity>
+            ></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

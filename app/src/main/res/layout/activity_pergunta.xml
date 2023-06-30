@@ -55,7 +55,7 @@
         <TextView
             android:id="@+id/txtPergunta"
             android:layout_width="match_parent"
-            android:layout_height="67dp"
+            android:layout_height="80dp"
             android:text="Vive na água e tem um canto que hipnotiza qualquer homem..."
             android:textSize="23dp"
             android:textColor="@color/text_color"
@@ -156,15 +156,32 @@
         android:layout_height="match_parent"
         android:visibility="visible"
         android:background="@color/background"
-
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingLeft="90dp"
+            android:paddingRight="90dp"
+            tools:context=".PerguntaActivity"
+            android:weightSum="12"
+            >
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/gif"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
                 android:layout_gravity="center"
                 android:src="@drawable/gif_indio_2"/>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aguardano roleta..."
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"></TextView>
+        </LinearLayout>
     </FrameLayout>
 
 

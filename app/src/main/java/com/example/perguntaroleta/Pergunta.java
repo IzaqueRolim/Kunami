@@ -7,15 +7,18 @@ public class Pergunta {
     private String b;
     private String c;
     private String certa;
+    private String Texto;
 
-    public Pergunta(String q, String a, String b, String c, String certa) {
+    public Pergunta(String q, String a, String b, String c, String certa,String Texto) {
         this.Q = q;
         this.a = a;
         this.b = b;
         this.c = c;
         this.certa = certa;
+        this.Texto = Texto;
     }
 
+    public String getTexto(){ return Texto;}
     public String getQ() {
         return Q;
     }

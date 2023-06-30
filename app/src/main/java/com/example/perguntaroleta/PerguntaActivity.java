@@ -40,6 +40,7 @@ public class PerguntaActivity extends AppCompatActivity {
 
     private Timer timer;
     String listener = "0";
+    int somaListener = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +150,6 @@ public class PerguntaActivity extends AppCompatActivity {
         }
     }
 
-
     private void getListener(){
         Call<String> call = apiService.getListener();
 
@@ -162,7 +162,8 @@ public class PerguntaActivity extends AppCompatActivity {
                     listener = resposta;
                     modalBonus.setVisibility(View.GONE);
                     modalGif.setVisibility(View.GONE);
-                    getPerguntasApi(Integer.parseInt(listener));
+                    somaListener += Integer.parseInt(listener);
+                    getPerguntasApi(somaListener);
                 }
             }
 
@@ -177,7 +178,8 @@ public class PerguntaActivity extends AppCompatActivity {
     public void verificarAlternativaCorreta(Button btn, String resposta){
         if(pergunta.getA()!= ""){
             btn.setTextColor(getResources().getColor(R.color.white));
-            if(pergunta.getCerta().equals(resposta)){
+            boolean usuarioAcertouAPergunta = pergunta.getCerta().equals(resposta);
+            if(usuarioAcertouAPergunta){
                 btn.setBackgroundColor(getResources().getColor(R.color.blue));
                 alternativaA.setClickable(false);
                 alternativaB.setClickable(false);
@@ -186,11 +188,8 @@ public class PerguntaActivity extends AppCompatActivity {
                 return;
             }
             btn.setBackgroundColor(getResources().getColor(R.color.red));
+            awaitSecondsExibirTexto(2000);
 
-            alternativaA.setClickable(false);
-            alternativaB.setClickable(false);
-            alternativaC.setClickable(false);
-            awaitSeconds(2000);
 
         }
     }
@@ -214,7 +213,23 @@ public class PerguntaActivity extends AppCompatActivity {
                 alternativaB.setClickable(true);
                 alternativaC.setClickable(true);
                 modalGif.setVisibility(View.VISIBLE);
+                modalBonus.setVisibility(View.GONE);
+            }
+        }, milliseconds);
+    }
 
+    public void awaitSecondsExibirTexto(int milliseconds){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(somaListener<=10){
+                    modalBonus.setVisibility(View.VISIBLE);
+                    txtModalBonus.setText(pergunta.getTexto());
+                }
+                alternativaA.setClickable(false);
+                alternativaB.setClickable(false);
+                alternativaC.setClickable(false);
+                awaitSeconds(4000);
             }
         }, milliseconds);
     }

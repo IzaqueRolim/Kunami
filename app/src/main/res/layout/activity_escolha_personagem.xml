@@ -13,11 +13,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo_thambi"
         android:text="Escolha seu personagem"
-        android:textSize="39sp"
-        android:textColor="@color/text_color"
         android:textAlignment="center"
-        />
+        android:textColor="@color/text_color"
+        android:textSize="39sp" />
 
     <ScrollView
         android:layout_width="wrap_content"
