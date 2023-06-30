@@ -136,6 +136,7 @@ public class PerguntaActivity extends AppCompatActivity {
                         alternativaA.setText("Avance");
                         alternativaB.setText("Avance");
                         alternativaC.setText("Avance");
+                        awaitSeconds(6000);
                     }
                 }
                 @Override
@@ -189,8 +190,6 @@ public class PerguntaActivity extends AppCompatActivity {
             }
             btn.setBackgroundColor(getResources().getColor(R.color.red));
             awaitSecondsExibirTexto(2000);
-
-
         }
     }
 
@@ -218,6 +217,17 @@ public class PerguntaActivity extends AppCompatActivity {
         }, milliseconds);
     }
 
+    public void awaitSecondsIrParaEscolhaPersonagem(int milliseconds){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(),EscolhaPersonagemActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, milliseconds);
+    }
+
     public void awaitSecondsExibirTexto(int milliseconds){
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -229,7 +239,7 @@ public class PerguntaActivity extends AppCompatActivity {
                 alternativaA.setClickable(false);
                 alternativaB.setClickable(false);
                 alternativaC.setClickable(false);
-                awaitSeconds(4000);
+                awaitSecondsIrParaEscolhaPersonagem(7000);
             }
         }, milliseconds);
     }
